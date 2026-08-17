@@ -6,6 +6,9 @@
 
 <title>Weather Platform</title>
 
+  <link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#1976d2">
+
 <link
   rel="stylesheet"
   href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -2375,6 +2378,17 @@ loadRadar,
 10 * 60 * 1000
 );
 
+  if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => {
+        console.log("Weather Platform PWA ready!");
+      })
+      .catch(error => {
+        console.error("PWA registration failed:", error);
+      });
+  });
+}
 </script>
 
 </body>
